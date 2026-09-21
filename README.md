@@ -120,6 +120,12 @@ Opportunities follow a 7-stage deal pipeline based on HubSpot's default deal sta
 
 Stage probabilities are model assumptions, not observed rates.
 
+### CRM Pipeline Preview
+
+![Simulated HubSpot deal pipeline (SIMULATED DATA)](assets/hubspot-pipeline.png)
+
+*HubSpot deal board for the simulated "BD Sales Pipeline": 9 deals across 7 stages. All deals are **SIMULATED**. No real outreach, meetings, proposals or sales activity occurred. Deal owner names were hidden from the screenshot.*
+
 ## Power BI Dashboard
 
 **Saudi BD Market Intelligence Dashboard**: a one-page executive view.
