@@ -1,0 +1,4 @@
+account_tier,tier_rank,observed_score_min,observed_score_max,accounts,tier_action,tier_note
+A,1,76,91,11,Pursue now - convert to pipeline,Analyst-assigned tier. Observed band 76-91.
+B,2,61,77,20,Nurture - re-score when a new dated trigger appears,"Analyst-assigned tier. Observed band 61-77; one account at 77 sits above the lowest Tier A score (76), so tier is not a pure score cut-off."
+C,3,41,59,19,Monitor only - no BD effort allocated,Analyst-assigned tier. Observed band 41-59.

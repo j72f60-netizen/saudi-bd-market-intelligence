@@ -1,0 +1,8 @@
+stage_key,stage_order,stage_label,stage_probability,is_closed_stage,stage_group
+appointmentscheduled,1,Prospect Identified,0.1,false,Pre-engagement
+qualifiedtobuy,2,Qualified Account,0.25,false,Pre-engagement
+presentationscheduled,3,Initial Outreach,0.4,false,Engagement
+decisionmakerboughtin,4,Meeting / Discovery,0.6,false,Engagement
+contractsent,5,Proposal / Negotiation,0.8,false,Commercial
+closedwon,6,Closed Won,1,true,Closed
+closedlost,7,Closed Lost,0,true,Closed
