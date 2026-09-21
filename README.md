@@ -17,6 +17,12 @@
 | **Scope** | 50 target accounts · 8 market segments · 9 pipeline opportunities |
 | **Output** | Scored account list, CRM pipeline, Power BI dashboard, business analysis |
 
+## Dashboard Preview
+
+![Saudi BD Market Intelligence Dashboard (SIMULATED DATA)](assets/dashboard.png)
+
+*Power BI dashboard, Reading View. SIMULATED DATA: portfolio demonstration only.*
+
 ## Business Problem
 
 A BD team with limited prospecting time has to decide which Saudi companies to pursue first. A long market list, ranked by segment size, does not show which accounts actually fit the offering or where effort is being lost in the pipeline.
