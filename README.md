@@ -23,6 +23,15 @@
 
 *Power BI dashboard, Reading View. SIMULATED DATA: portfolio demonstration only.*
 
+## Repository Structure
+
+| Path | Content |
+|---|---|
+| [`README.md`](README.md) | Case study overview (this page) |
+| [`docs/methodology.md`](docs/methodology.md) | Full methodology: targeting, Fit Score, tiering, pipeline, recommendations, limitations |
+| [`data/`](data/) | 7 simulated datasets exported from the Power BI model + [`data/README.md`](data/README.md) |
+| [`assets/dashboard.png`](assets/dashboard.png) | Dashboard screenshot |
+
 ## Business Problem
 
 A BD team with limited prospecting time has to decide which Saudi companies to pursue first. A long market list, ranked by segment size, does not show which accounts actually fit the offering or where effort is being lost in the pipeline.
@@ -42,20 +51,23 @@ A BD team with limited prospecting time has to decide which Saudi companies to p
 | `dim_account` | 50 accounts: segment, tier, fit score, business signal, Riyadh presence, status |
 | `fact_score_component` | 7 scoring components per account (350 rows) |
 | `dim_tier` | Tier definitions and recommended action per tier |
+| `dim_segment` | 8 market segments with accounts researched and in pipeline |
 | `fact_opportunity` | 9 opportunities: stage, priority, expected close month, next step |
 | `dim_stage` | 7 pipeline stages with stage probability |
 | `fact_task` | 18 next-step tasks linked to opportunities |
 
-**SIMULATED DATA disclaimer:** company names are used as research targets. All scoring outcomes, tiers, opportunities, tasks and pipeline activity are simulated for demonstration. There are no Closed Won or Closed Lost records, so the project does not measure conversion or win rates.
+**SIMULATED DATA disclaimer:** company names are used as research targets. All scoring outcomes, tiers, opportunities, tasks and pipeline activity are simulated for demonstration. There are no Closed Won or Closed Lost records, so the project does not measure conversion or win rates. File-level details: [`data/README.md`](data/README.md).
 
 ## Methodology
 
-1. **Research:** identify target accounts and record a dated business signal for each.
+1. **Research:** identify target accounts and record a business signal and public source for each (36 of 50 signals are dated triggers).
 2. **Scoring:** score each account on 7 ICP components (100 points total).
 3. **Tiering:** assign Tier A / B / C with a defined BD action per tier.
 4. **Pipeline:** open opportunities for prioritised accounts and track them through CRM stages with next-step tasks.
 5. **Reporting:** model the data in Power BI and QA every visual against the semantic model.
 6. **Analysis:** segment, tier, fit-score and pipeline analysis, with every figure verified using read-only DAX queries.
+
+Full detail: [`docs/methodology.md`](docs/methodology.md).
 
 ## Account Scoring & Tiering
 
@@ -82,6 +94,18 @@ Tiers are analyst-assigned. Every account scoring 80+ is Tier A and every accoun
 
 ## CRM / HubSpot Pipeline Workflow
 
+The CRM layer is **simulated**. Company names, business signals and source links come from public research; everything below (opportunities, stages, priorities, tasks) was simulated to demonstrate the workflow. **No outreach, meetings or proposals actually took place.**
+
+**Workflow:** Account (scored and tiered) → Opportunity (opened for Tier A accounts) → Pipeline stage → Deal priority → Next-step tasks
+
+| Step | What is recorded |
+|---|---|
+| Account | Segment, Fit Score, tier, business signal, status |
+| Opportunity | One per pipeline account (9 in total, all Tier A) |
+| Pipeline stage | Current deal stage and stage probability |
+| Priority | `priority_rank` 1 / 2 / 3 = high / medium / low; set by Fit Score, not by stage |
+| Next-step task | 2 tasks per opportunity: qualification + a stage-specific preparation task (all labelled "simulated") |
+
 Opportunities follow a 7-stage deal pipeline based on HubSpot's default deal stages:
 
 | Order | Stage | Stage probability | Group |
@@ -94,7 +118,7 @@ Opportunities follow a 7-stage deal pipeline based on HubSpot's default deal sta
 | 6 | Closed Won | 100% | Closed |
 | 7 | Closed Lost | 0% | Closed |
 
-Each opportunity carries a deal priority, an expected close month and a next step, with two linked tasks (qualification + stage-specific preparation). Stage probabilities are model assumptions, not observed rates.
+Stage probabilities are model assumptions, not observed rates.
 
 ## Power BI Dashboard
 
@@ -104,6 +128,7 @@ Each opportunity carries a deal priority, an expected close month and a next ste
 - **KPIs:** Total Accounts (50), Pipeline Accounts (9), Average Fit Score (65.70), Tier A Accounts (11)
 - **Visuals:** Accounts by Segment, Accounts by Tier, Pipeline by Stage, Top Priority Accounts (`priority_rank = 1`, sorted by Fit Score), Key Insights
 - **QA:** every KPI, chart value, table row and filter result was checked against the semantic model with read-only DAX.
+- **Note:** the Key Insights panel is static text for the full dataset and does not change with filters.
 
 ## Key Findings
 
@@ -116,7 +141,7 @@ Each opportunity carries a deal priority, an expected close month and a next ste
 
 ## BD Recommendations
 
-1. **Act on late-stage deals first:** clear overdue next steps on the Proposal and Meeting-stage opportunities.
+1. **Act on late-stage deals first:** clear the open next steps on the Proposal / Negotiation and Meeting / Discovery opportunities before starting new outreach.
 2. **Close Tier A coverage:** open qualification for the 2 pending Tier A accounts before adding new accounts.
 3. **Re-assess boundary Tier B accounts:** review the 5 Tier B accounts scoring 74–77 with a documented rationale.
 4. **Focus prospecting on fit, not list size:** prioritise Healthcare and Transport & logistics; review targeting criteria for Construction, Technology and Financial services (22 accounts, 1 Tier A, 0 opportunities).
